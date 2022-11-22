@@ -2,15 +2,6 @@
   padding: 0 2rem;
 }
 
-.me {
-  background-image: url(/public/images/룰루랄라.jpg);
-  float: left;
-}
-
-.introduce {
-  text-align: center;
-}
-
 .main {
   min-height: 100vh;
   padding: 4rem 0;

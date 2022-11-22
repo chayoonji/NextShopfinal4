@@ -5,6 +5,7 @@ import CheckoutWizard from "../components/CheckoutWizard";
 import Layout from "../components/Layout";
 import { Store } from "../utils/Store";
 import { useRouter } from "next/router";
+
 export default function ShippingScreen() {
   const {
     handleSubmit,
@@ -17,6 +18,7 @@ export default function ShippingScreen() {
   const { cart } = state;
   const { shippingAddress } = cart;
   const router = useRouter();
+
   useEffect(() => {
     setValue("fullName", shippingAddress.fullName);
     setValue("address", shippingAddress.address);
@@ -24,6 +26,7 @@ export default function ShippingScreen() {
     setValue("postalCode", shippingAddress.postalCode);
     setValue("country", shippingAddress.country);
   }, [setValue, shippingAddress]);
+
   const submitHandler = ({ fullName, address, city, postalCode, country }) => {
     dispatch({
       type: "SAVE_SHIPPING_ADDRESS",
@@ -42,16 +45,17 @@ export default function ShippingScreen() {
         },
       })
     );
+
     router.push("/payment");
   };
+
   return (
-    <Layout title="배달주소 입력">
+    <Layout title="Shipping Address">
       <CheckoutWizard activeStep={1} />
       <form
         className="mx-auto max-w-screen-md"
         onSubmit={handleSubmit(submitHandler)}
       >
-        <br></br>
         <h1 className="mb-4 text-xl">Shipping Address</h1>
         <div className="mb-4">
           <label htmlFor="fullName">Full Name</label>
@@ -123,9 +127,9 @@ export default function ShippingScreen() {
         <div className="mb-4 flex justify-between">
           <button className="primary-button">Next</button>
         </div>
-        <br></br>
       </form>
     </Layout>
   );
 }
+
 ShippingScreen.auth = true;

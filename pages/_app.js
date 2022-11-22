@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
 }
 
 function Auth({ children }) {
-  const router = useRouter;
+  const router = useRouter();
   const { status } = useSession({
     required: true,
     onUnauthenticated() {
@@ -28,7 +28,7 @@ function Auth({ children }) {
     },
   });
   if (status === "loading") {
-    return <div>Loading...</div>;
+    return <div> Loading... </div>;
   }
   return children;
 }

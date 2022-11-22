@@ -1,15 +1,18 @@
 import Link from "next/link";
 import React from "react";
 
-export default function ProductItem({ product }) {
+export default function ProductItem({ product, addToCartHandler }) {
   return (
     <div className="card">
       <Link href={`/product/${product.slug}`}>
         <a>
           <img
             src={product.image}
-            alt={product.main}
+            alt={product.name}
             className="rounded shadow"
+            width={640}
+            height={640}
+            layout="responsive"
           />
         </a>
       </Link>
@@ -21,8 +24,12 @@ export default function ProductItem({ product }) {
         </Link>
         <p className="mb-2">{product.brand}</p>
         <p>${product.price}</p>
-        <button className="primary-button" type="button">
-          장바구니에 추가 {""}
+        <button
+          className="primary-button"
+          type="button"
+          onClick={() => addToCartHandler(product)}
+        >
+          카트에 넣기
         </button>
       </div>
     </div>
