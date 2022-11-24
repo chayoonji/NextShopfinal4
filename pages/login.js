@@ -41,40 +41,32 @@ export default function LoginScreen() {
 
   const githubLoginHandler = async () => {
     try {
-      const result = await signIn("github", {
-        redirect: false,
-      });
+      const result = await signIn("github", { redirect: false });
       console.log("Github login: " + result);
     } catch (err) {
       toast.error(getError(err));
     }
   };
-
   const googleLoginHandler = async () => {
     try {
-      const result = await signIn("google", {
-        redirect: false,
-      });
+      const result = await signIn("google", { redirect: false });
+      console.log("Google login: " + result);
     } catch (err) {
       toast.error(getError(err));
     }
   };
-
   const kakaoLoginHandler = async () => {
     try {
-      const result = await signIn("kakao", {
-        redirect: false,
-      });
+      const result = await signIn("kakao", { redirect: false });
+      console.log("Kakao login: " + result);
     } catch (err) {
       toast.error(getError(err));
     }
   };
-
   const naverLoginHandler = async () => {
     try {
-      const result = await signIn("naver", {
-        redirect: false,
-      });
+      const result = await signIn("naver", { redirect: false });
+      console.log("Naver login: " + result);
     } catch (err) {
       toast.error(getError(err));
     }
@@ -88,93 +80,94 @@ export default function LoginScreen() {
       >
         <h1 className="text-xl mb-4">Login</h1>
 
-        <div className="mb-4">
-          <label htmlFor="email">Email</label>
+        <div className="mb-4 bg-lime-100 p-4 m-2">
+          <label htmlFor="email" className="mt-2">
+            Email
+          </label>
           <input
             type="email"
             {...register("email", {
-              required: "Please enter your email..",
+              required: "Please enter email",
               pattern: {
                 value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/i,
-                message: "Please enter valid email.",
+                message: "Please enter valid email",
               },
             })}
             className="w-full"
             id="email"
             autoFocus
           ></input>
+          {errors.email && (
+            <div className="text-red-500">{errors.email.message}</div>
+          )}
         </div>
 
-        {errors.email && (
-          <div className="text-red-500">{errors.email.message}</div>
-        )}
-
-        <div className="mb-4">
-          <label htmlFor="Password">Password</label>
+        <div className="mb-4 bg-lime-100 p-4 m-2">
+          <label htmlFor="password" className="mt-2">
+            Password
+          </label>
           <input
-            type="Password"
+            type="password"
             {...register("password", {
-              required: "Please enter your Password...",
+              required: "Please enter password",
               minLength: {
                 value: 3,
-                message: "password is more than 3",
+                message: "사용가능한 비밀번호를 입력하세요.",
               },
             })}
             className="w-full"
-            id="Password"
+            id="email"
             autoFocus
           ></input>
-
           {errors.password && (
             <div className="text-red-500">{errors.password.message}</div>
           )}
         </div>
 
         <div className="mb-4">
-          <button className="primary-button" type="submit">
+          <button className="primary-button mt-2" type="submit">
             Login
           </button>
         </div>
 
         <div className="mb-4">
-          계정이 없으면 등록하세요...
+          계정이 없으면 등록하세요...{" "}
           <Link href="register">
             <a>Register</a>
           </Link>
         </div>
 
-        <div className="p-5 bg-gray-500 rounded-lg">
+        <div className="p-4  rounded-lg">
           <div className="mb-4">
             <button
               className="primary-button w-full"
-              type="button"
               onClick={githubLoginHandler}
             >
               Github Login
             </button>
           </div>
+
           <div className="mb-4">
             <button
               className="primary-button w-full"
-              type="button"
               onClick={googleLoginHandler}
             >
               Google Login
             </button>
           </div>
+
           <div className="mb-4">
             <button
               className="primary-button w-full"
-              type="button"
               onClick={kakaoLoginHandler}
             >
               Kakao Login
             </button>
           </div>
-          <div className="">
+
+          <div className="mb-4">
             <button
               className="primary-button w-full"
-              type="button"
               onClick={naverLoginHandler}
             >
               Naver Login
