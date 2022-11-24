@@ -52,7 +52,6 @@ export default function LoginScreen() {
 
   const googleLoginHandler = async () => {
     try {
-      // eslint-disable-next-line no-unused-vars
       const result = await signIn("google", {
         redirect: false,
       });
